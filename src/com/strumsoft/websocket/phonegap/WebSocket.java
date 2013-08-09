@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.nio.channels.NotYetConnectedException;
 import java.nio.channels.SelectionKey;
@@ -243,7 +244,22 @@ public class WebSocket implements Runnable {
 
 		this.instance = this;
 	}
+	
+	public WebSocket(WebView appView, URI uri){
+		this.appView = appView;
+		this.instance=new WebSocket(appView, uri, WebSocket.Draft.DRAFT75, getRandonUniqueId());
+	}
+	
+	public WebSocket(WebView appView){
+		this.appView = appView;
+		this.instance=new WebSocket(appView, uri, WebSocket.Draft.DRAFT75, getRandonUniqueId());
+	}
 
+	public WebSocket(WebView appView, String url) throws URISyntaxException{
+		this.appView = appView;
+		this.instance=new WebSocket(appView, new URI(url), WebSocket.Draft.DRAFT75, getRandonUniqueId());
+
+	}
 	// //////////////////////////////////////////////////////////////////////////////////////
 	// /////////////////////////// WEB SOCKET API Methods
 	// ///////////////////////////////////
@@ -686,5 +702,9 @@ public class WebSocket implements Runnable {
 			key = new StringBuilder(key).insert(position, "\u0020").toString();
 		}
 		return key;
+	}
+	
+	private String getRandonUniqueId() {
+		return "WEBSOCKET." + new Random().nextInt(100);
 	}
 }

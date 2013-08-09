@@ -1,7 +1,7 @@
 package com.thinksouce.vw_websocket;
 
 import com.strumsoft.websocket.phonegap.WebSocketFactory;
-
+import com.strumsoft.websocket.phonegap.WebSocket;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
 		});
 		wv.loadUrl("file:///android_asset/www/index.html");
 		wv.addJavascriptInterface(new WebSocketFactory(wv), "WebSocketFactory");
+		wv.addJavascriptInterface(new WebSocket(wv), "WebSocket");
     }
 
 	@Override

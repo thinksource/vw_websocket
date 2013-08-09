@@ -32,7 +32,8 @@
 	// WebSocket Object. All listener methods are cleaned up!
 	var WebSocket = global.WebSocket = function(url) {
 		// get a new websocket object from factory (check com.strumsoft.websocket.WebSocketFactory.java)
-		this.socket = WebSocketFactory.getInstance(url);
+		//this.socket = WebSocketFactory.getInstance(url);
+		this.socket=new WebSocket(url);
 		// store in registry
 		if(this.socket) {
 			WebSocket.store[this.socket.getId()] = this;

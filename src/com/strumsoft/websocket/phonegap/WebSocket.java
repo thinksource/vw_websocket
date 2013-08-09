@@ -252,7 +252,7 @@ public class WebSocket implements Runnable {
 	
 	public WebSocket(WebView appView){
 		this.appView = appView;
-		this.instance=new WebSocket(appView, uri, WebSocket.Draft.DRAFT75, getRandonUniqueId());
+		this.instance=new WebSocket(appView, null, WebSocket.Draft.DRAFT75, getRandonUniqueId());
 	}
 
 	public WebSocket(WebView appView, String url) throws URISyntaxException{

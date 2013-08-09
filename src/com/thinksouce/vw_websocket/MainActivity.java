@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 		});
 		wv.loadUrl("file:///android_asset/www/index.html");
 		wv.addJavascriptInterface(new WebSocketFactory(wv), "WebSocketFactory");
-		wv.addJavascriptInterface(new WebSocket(wv), "WebSocket");
+		
     }
 
 	@Override

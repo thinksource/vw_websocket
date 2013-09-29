@@ -16,9 +16,10 @@ function testWebSocket() {
 	websocket.onerror = function(evt) { onError(evt) }; 
 }  
 
-function onOpen(evt) { 
+function onOpen(evt) {
+	input= document.getElementById("input"); 
 	writeToScreen("CONNECTED"); 
-	doSend("WebSocket rocks"); 
+	doSend(input.value); 
 }  
 function onClose(evt) { 
 	writeToScreen("DISCONNECTED"); 
@@ -33,7 +34,13 @@ function onError(evt) {
 }  
 function doSend(message) { 
 	writeToScreen("SENT: " + message);  websocket.send(message); 
-}  
+}
+
+function sendMeg(){
+	input= document.getElementById("input"); 
+	writeToScreen("CONNECTED"); 
+	doSend(input.value);
+}
 
 function writeToScreen(message) { 
 	var pre = document.createElement("p"); 
@@ -46,6 +53,10 @@ window.addEventListener("load", init, false);
 <div>
 this is simple websocket test, the default server is the ws://echo.websocket.org/.<br />
 This is follow the websocket example of:<a href='http://www.websocket.org/echo.html'>websocket offical example</a>
+You will send message:<input type="text" id="input" value="input message"/>
+<input type="button" id="sendms" value="send" onclick="sendMeg()">
+
 </div> 
+
 <div id="output"></div>  
 </html>
